@@ -10,8 +10,8 @@ export class AccountController {
 
     async create(req: Request, res: Response) {
         console.log(req.body);
-        const { name, type, id,isActive } = req.body;
-        const account = await this.createAccountUseCase.execute(id ,name, type,isActive);
+        const { name, type, id,suscription } = req.body;
+        const account = await this.createAccountUseCase.execute(id ,name, type,suscription);
         res.status(201).json(account);
     }
 

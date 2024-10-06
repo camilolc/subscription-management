@@ -3,6 +3,7 @@ import { CreateAccount } from '../../application/use-cases/account/create-accoun
 import { GetAllAcounts } from '../../application/use-cases/account/get-all-acounts.use-case';
 import { AccountController } from '../controllers/AccountController';
 import { InMemoryAccountRepository } from '../db/InMemmoryAccount.repository';
+import { InMemorySuscriptionRepository } from '../db/InMemorySuscription.repository';
 import { UpdateAccount } from '../../application/use-cases/account/update-account.use-case';
 import { SoftDeleteAccount } from '../../application/use-cases/account/soft-delete-account.use-case';
 
@@ -15,7 +16,8 @@ export class Server {
     async start(){
 
         this.app.use(express.json());
-        const accountRepository = new InMemoryAccountRepository();
+        const inMemorySuscriptionRepository = new InMemorySuscriptionRepository();
+        const accountRepository = new InMemoryAccountRepository(inMemorySuscriptionRepository);
         const createAccountUseCase = new CreateAccount(accountRepository);
         const getAccountsUseCase = new GetAllAcounts(accountRepository);
         const updateAccountUseCase = new UpdateAccount(accountRepository);

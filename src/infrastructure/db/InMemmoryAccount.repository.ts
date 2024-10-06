@@ -1,12 +1,16 @@
 import { Account } from "../../domain/entities/Account";
 import { AccountRepository } from "../../interfaces/AccountRepository";
+import { InMemorySuscriptionRepository } from "./InMemorySuscription.repository";
 
 
 
 export class InMemoryAccountRepository implements AccountRepository {
+
+    constructor(private readonly suscriptionRepository:InMemorySuscriptionRepository){}
     private accounts: Account[] = [];    
     
     async create(account: Account): Promise<Account> {
+        if(account.subscription) this.suscriptionRepository.create(account.subscription);
         this.accounts.push(account);
         return account;
     }
