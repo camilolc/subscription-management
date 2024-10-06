@@ -1,17 +1,18 @@
 import { AccountRepository } from "../../../interfaces/AccountRepository";
+import { SuscriptionRepository } from "../../../interfaces/SuscriptionRepository";
 
 
-export interface SoftDeleteAccountUseCase{
+export interface SoftDeleteSuscriptionUseCase{
     execute(id: string): Promise<void> 
 }
 
-export class SoftDeleteAccount implements SoftDeleteAccountUseCase {
-    constructor(private accountRepository: AccountRepository) {}
+export class SoftDeleteSuscription implements SoftDeleteSuscriptionUseCase {
+    constructor(private suscriptionRepository: SuscriptionRepository) {}
 
     async execute(id: string): Promise<void> {
-        const account = await this.accountRepository.findById(id);
-        if (!account) throw new Error('Account not found');
-        // account.isActive = false; 
-        await this.accountRepository.update(account);
+        const suscription = await this.suscriptionRepository.findById(id);
+        if (!suscription) throw new Error('Account not found');
+        suscription.isActive = false; 
+        await this.suscriptionRepository.update(suscription);
     }
 }

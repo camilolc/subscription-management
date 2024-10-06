@@ -11,7 +11,6 @@ export class UpdateAccount implements UpdateAccountUseCase {
 
     async execute(id: string, name: string, type: "wellness" | "health"): Promise<void> {
 
-        console.log(id)
         const account = await this.accountRepository.findById(id);
         if (!account) throw new Error('Account not found');
         account.name = name;

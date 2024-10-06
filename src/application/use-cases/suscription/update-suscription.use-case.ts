@@ -1,21 +1,19 @@
 import { Account } from "../../../domain/entities/Account";
 import { AccountRepository } from "../../../interfaces/AccountRepository";
+import { SuscriptionRepository } from "../../../interfaces/SuscriptionRepository";
 
 
-export interface UpdateAccountUseCase{
-    execute(id: string, name: string, type: "wellness" | "health"): Promise<void>
+export interface UpdateSuscriptionUseCase{
+    execute(id:string,state:'active' | 'inactive'): Promise<void>
 }
 
-export class UpdateAccount implements UpdateAccountUseCase {
-    constructor(private accountRepository: AccountRepository) {}
+export class UpdateSuscription implements UpdateSuscriptionUseCase {
+    constructor(private suscriptionRepository: SuscriptionRepository) {}
 
-    async execute(id: string, name: string, type: "wellness" | "health"): Promise<void> {
-
-        console.log(id)
-        const account = await this.accountRepository.findById(id);
-        if (!account) throw new Error('Account not found');
-        account.name = name;
-        account.type = type;
-        await this.accountRepository.update(account);
-    }
+   async execute(id: string, state: "active" | "inactive"): Promise<void> {
+        const suscription = await this.suscriptionRepository.findById(id);
+        if (!suscription) throw new Error('suscription not found');
+        suscription.state = state;
+        await this.suscriptionRepository.update(suscription);
+    } 
 }

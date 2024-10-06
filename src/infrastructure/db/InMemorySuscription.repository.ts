@@ -4,7 +4,7 @@ import { SuscriptionRepository } from "../../interfaces/SuscriptionRepository";
 
 
 export class InMemorySuscriptionRepository implements SuscriptionRepository {
-    private subscriptions: Subscription[] = [{id:'1',state:'active'}];    
+    private subscriptions: Subscription[] = [{id:'1',state:'active',isActive:true}];    
     
     async create(subscription: Subscription): Promise<Subscription> {
         this.subscriptions.push(subscription);

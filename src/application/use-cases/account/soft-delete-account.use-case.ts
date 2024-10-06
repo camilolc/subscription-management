@@ -11,7 +11,7 @@ export class SoftDeleteAccount implements SoftDeleteAccountUseCase {
     async execute(id: string): Promise<void> {
         const account = await this.accountRepository.findById(id);
         if (!account) throw new Error('Account not found');
-        // account.isActive = false; 
+        account.isActive = false; 
         await this.accountRepository.update(account);
     }
 }
