@@ -1,3 +1,4 @@
+import { Server } from "./infrastructure/Server/Server";
 
 
 (async()=>{
@@ -5,5 +6,6 @@
 })()
 
 function main(){
-    console.log("Running main")
+    const server = new Server();
+    server.start();
 }
