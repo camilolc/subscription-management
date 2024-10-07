@@ -5,8 +5,7 @@ import { AccountRepository } from "../../../interfaces/AccountRepository";
 
 export interface CreateAccountUseCase {
     execute( id:string,name: string, type: 'wellness' | 'health', suscription:Subscription ): Promise<Account>
-  }
-  
+  } 
 
 
 export class CreateAccount implements CreateAccountUseCase{
@@ -15,9 +14,4 @@ export class CreateAccount implements CreateAccountUseCase{
             const account = new Account(id, name, type, suscription);
             return await this.accountRepository.create(account);
     }
-
-    // async execute(id:string,name: string, type: 'wellness' | 'health', suscription): Promise<Account> {
-    //     const account = new Account(id, name, type, );
-    //     return await this.accountRepository.create(account);
-    // }
 }

@@ -1,9 +1,4 @@
 import { Request, Response } from 'express';
-import { CreateAccount } from '../../application/use-cases/account/create-account.use-case';
-import { GetAllAcounts } from '../../application/use-cases/account/get-all-acounts.use-case';
-import { Account } from '../../domain/entities/Account';
-import { UpdateAccount } from '../../application/use-cases/account/update-account.use-case';
-import { SoftDeleteAccount } from '../../application/use-cases/account/soft-delete-account.use-case';
 import { CreateClient } from '../../application/use-cases/client/create-client.use-case';
 import { GetAllClients } from '../../application/use-cases/client/get-all-client.use-case';
 import { UpdateClient } from '../../application/use-cases/client/update-client.use-case';

@@ -17,6 +17,12 @@ import { GetAllClients } from '../../application/use-cases/client/get-all-client
 import { UpdateClient } from '../../application/use-cases/client/update-client.use-case';
 import { SoftDeleteClient } from '../../application/use-cases/client/soft-delete-client.use-case';
 import { ClientController } from '../controllers/ClientController';
+import { InMemoryAddonRepository } from '../db/InMemmoryAddon.repository';
+import { CreateAddon } from '../../application/use-cases/addon/create-addon.use-case';
+import { GetAddonsQuantityStatus } from '../../application/use-cases/addon/get-addons-quantity-status.use-case';
+import { HandleQuantity } from '../../application/use-cases/addon/handle-quantity.use-case';
+import { SoftDeleteAddon } from '../../application/use-cases/addon/soft-dalete-addon.use-case';
+import { AddonController } from '../controllers/AddonController';
 
 
 
@@ -31,6 +37,7 @@ export class Server {
         const suscriptionRepository = new InMemorySuscriptionRepository();
         const accountRepository = new InMemoryAccountRepository(suscriptionRepository);
         const clientRepository = new InMemoryClientRepository(suscriptionRepository);
+        const addonRepository = new InMemoryAddonRepository();
 
         //Account
         const createAccountUseCase = new CreateAccount(accountRepository);
@@ -47,12 +54,19 @@ export class Server {
         const getClientUseCase = new GetAllClients(clientRepository);
         const updateClientUseCase = new UpdateClient(clientRepository);
         const softDeleteClientUseCase = new SoftDeleteClient(clientRepository);
+        //Addon
+        const createAddonUseCase = new CreateAddon(addonRepository);
+        const getAddonsQuantityStatusUseCase = new GetAddonsQuantityStatus(addonRepository);
+        const handleQuantityUseCase = new HandleQuantity(addonRepository);
+        const softDeleteAddonUseCase = new SoftDeleteAddon(addonRepository);
+
 
 
         //controllles
         const accountController = new AccountController(createAccountUseCase,getAccountsUseCase, updateAccountUseCase,softDeleteUseCase);
         const suscriptionController = new SuscriptionController(createSuscriptionUseCase,getSuscriptionUseCase,updateSuscriptionUseCase,softDeleteSuscriptionUseCase);
         const clientController = new ClientController(createClientUseCase,getClientUseCase,updateClientUseCase,softDeleteClientUseCase);
+        const addonController = new AddonController(createAddonUseCase,getAddonsQuantityStatusUseCase,handleQuantityUseCase,softDeleteAddonUseCase);
 
         this.app.post('/accounts', (req, res) => accountController.create(req, res));
         this.app.get('/accounts', (req, res) => accountController.getAll(req, res));
@@ -69,9 +83,13 @@ export class Server {
         this.app.put('/clients/:id', (req, res) => clientController.update(req, res));
         this.app.delete('/clients/:id', (req, res) => clientController.softDelete(req, res));
 
+        this.app.get('/addons', (req, res) => addonController.getAll(req, res));
+        this.app.post('/addons', (req, res) => addonController.create(req, res));
+        this.app.put('/addons', (req, res) => addonController.handleQuantity(req, res));
+        this.app.delete('/addons/:id', (req, res) => addonController.softDelete(req, res));
+
 
         this.app.listen(3000,()=>{
-
 
             console.log(`Server running on port ${3000}`)
         })
