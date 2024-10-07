@@ -21,7 +21,7 @@ describe('InMemoryAddonRepository', () => {
         await addonRepository.create(addon);
 
         const updatedAddon = new Addon('sms', 15);
-        updatedAddon.id = addon.id; // Mantiene el mismo ID para actualizar
+        updatedAddon.id = addon.id;
 
         await addonRepository.update(updatedAddon);
 

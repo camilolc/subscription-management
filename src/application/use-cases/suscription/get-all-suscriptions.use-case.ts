@@ -1,6 +1,4 @@
-import { Account } from "../../../domain/entities/Account";
 import { Subscription } from "../../../domain/entities/Suscription";
-import { AccountRepository } from "../../../domain/repositories/AccountRepository";
 import { SuscriptionRepository } from "../../../domain/repositories/SuscriptionRepository";
 
 

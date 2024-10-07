@@ -66,34 +66,11 @@ export class Server {
         const handleQuantityUseCase = new HandleQuantity(addonRepository);
         const softDeleteAddonUseCase = new SoftDeleteAddon(addonRepository);
 
-
-
         //controllles
         const accountController = new AccountController(createAccountUseCase,getAccountsUseCase, updateAccountUseCase,softDeleteUseCase,addClientToAccountUseCase);
         const suscriptionController = new SuscriptionController(createSuscriptionUseCase,getSuscriptionUseCase,updateSuscriptionUseCase,softDeleteSuscriptionUseCase);
         const clientController = new ClientController(createClientUseCase,getClientUseCase,updateClientUseCase,softDeleteClientUseCase);
-        const addonController = new AddonController(createAddonUseCase,getAddonsQuantityStatusUseCase,handleQuantityUseCase,softDeleteAddonUseCase);
-
-        // this.app.post('/accounts', (req, res) => accountController.create(req, res));
-        // this.app.post('/accounts/addclient', (req, res) => accountController.addClientToAccount(req, res));
-        // this.app.get('/accounts', (req, res) => accountController.getAll(req, res));
-        // this.app.put('/accounts/:id', (req, res) => accountController.update(req, res));
-        // this.app.delete('/accounts/:id', (req, res) => accountController.softDelete(req, res));
-
-        // this.app.get('/suscriptions', (req, res) => suscriptionController.getAll(req, res));
-        // this.app.post('/suscriptions', (req, res) => suscriptionController.create(req, res));
-        // this.app.put('/suscriptions/:id', (req, res) => suscriptionController.update(req, res));
-        // this.app.delete('/suscriptions/:id', (req, res) => suscriptionController.softDelete(req, res));
-
-        // this.app.get('/clients', (req, res) => clientController.getAll(req, res));
-        // this.app.post('/clients', (req, res) => clientController.create(req, res));
-        // this.app.put('/clients/:id', (req, res) => clientController.update(req, res));
-        // this.app.delete('/clients/:id', (req, res) => clientController.softDelete(req, res));
-
-        // this.app.get('/addons', (req, res) => addonController.getAll(req, res));
-        // this.app.post('/addons', (req, res) => addonController.create(req, res));
-        // this.app.put('/addons', (req, res) => addonController.handleQuantity(req, res));
-        // this.app.delete('/addons/:id', (req, res) => addonController.softDelete(req, res));
+        const addonController = new AddonController(createAddonUseCase,getAddonsQuantityStatusUseCase,handleQuantityUseCase,softDeleteAddonUseCase);  
 
         this.app.use('/accounts', new AccountRoutes(accountController).router);
         this.app.use('/clients', new ClientRoutes(clientController).router);

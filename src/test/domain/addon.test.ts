@@ -19,18 +19,18 @@ describe('Addon Entity', () => {
 
   it("should throw an error if not enough quantity to use", () => {
     const addon = new Addon('pushNotification', 1);
-    addon.useAddon(); // This will use 1 addon
+    addon.useAddon(); 
     expect(() => addon.useAddon()).toThrow("Not enough addon quantity.");
   });
 
   it("should return the correct remaining quantity", () => {
-    const addon = new Addon('email', 10, 3); // 10 assigned, 3 used
+    const addon = new Addon('email', 10, 3); 
     expect(addon.getRemainingQuantity()).toBe(7);
   });
 
   it("should handle quantity updates correctly", () => {
     const addon = new Addon('email', 10);
-    addon.handleQuantity(-3); // Reduces assigned quantity by 3
+    addon.handleQuantity(-3); 
     expect(addon.assignedQuantity).toBe(7);
   });
 
@@ -41,7 +41,7 @@ describe('Addon Entity', () => {
 
   it("should throw an error if trying to use addon when inactive", () => {
     const addon = new Addon('email', 5);
-    addon.isActive = false; // Set the addon to inactive
+    addon.isActive = false; 
     expect(() => addon.useAddon()).toThrow("Not enough addon quantity.");
   });
 

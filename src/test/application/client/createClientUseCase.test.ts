@@ -11,7 +11,7 @@ describe('CreateClient', () => {
     beforeEach(() => {
         clientRepository = {
             create: jest.fn(),
-        } as unknown as ClientRepository; // Mocking ClientRepository
+        } as unknown as ClientRepository;
         createClient = new CreateClient(clientRepository);
         
     });

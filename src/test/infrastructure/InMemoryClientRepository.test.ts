@@ -17,16 +17,14 @@ describe('InMemoryClientRepository', () => {
     });
 
     it('should create a client and call CreateSubscription and CreateAddon use cases', async () => {
-        // Arrange
+      
         const subscription = new Subscription("active");
         const addon1 = new Addon('email', 5);
         const addon2 = new Addon('sms', 10)
         const client = new Client("John Doe", "john.doe@example.com", subscription, [addon1, addon2]);
-
-        // Act
+  
         await clientRepository.create(client);
-
-        // Assert
+  
         expect(createSubscriptionUseCase.execute).toHaveBeenCalledWith("active");
         expect(createAddonUseCase.execute).toHaveBeenCalledWith("email", 5);
         expect(createAddonUseCase.execute).toHaveBeenCalledWith("sms", 10);

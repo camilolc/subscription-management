@@ -2,7 +2,6 @@ import { Subscription } from "../../domain/entities/Suscription";
 
 
 describe('Subscription', () => {
-  // Reseteamos el contador antes de cada test
 
 
   it('should create a new subscription with incremented id', () => {
