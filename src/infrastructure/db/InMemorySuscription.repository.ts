@@ -4,7 +4,7 @@ import { SuscriptionRepository } from "../../interfaces/SuscriptionRepository";
 
 
 export class InMemorySuscriptionRepository implements SuscriptionRepository {
-    private subscriptions: Subscription[] = [{id:'1',state:'active',isActive:true}];    
+    private subscriptions: Subscription[] = [];    
     
     async create(subscription: Subscription): Promise<Subscription> {
         this.subscriptions.push(subscription);
@@ -16,7 +16,7 @@ export class InMemorySuscriptionRepository implements SuscriptionRepository {
         if (index !== -1) this.subscriptions[index] = subscription;
     }
     
-    async findById(id: string): Promise<Subscription | null> {
+    async findById(id: number): Promise<Subscription | null> {
         return this.subscriptions.find(subscription => subscription.id === id) || null;
     }
     async findAll(): Promise<Subscription[] | null> {

@@ -1,11 +1,16 @@
+let addIdCounter = 0;
+
 export class Addon {
+
+  public id: number;
   constructor(
-    public id: string,
     public type: 'email' | 'sms' | 'pushNotification',
     public assignedQuantity: number,
     public usedQuantity: number = 0,
     public isActive = true
-  ) { }
+  ) {
+    this.id = ++addIdCounter;
+   }
 
   useAddon() {
     if (this.assignedQuantity >= this.usedQuantity + 1) {

@@ -15,8 +15,8 @@ export class SuscriptionController {
 
     async create(req: Request, res: Response) {
         console.log(req.body);
-        const { id, state } = req.body;
-        const suscription = await this.createSuscriptionUseCase.execute(id ,state);
+        const { state } = req.body;
+        const suscription = await this.createSuscriptionUseCase.execute(state);
         res.status(201).json(suscription);
     }
 
@@ -30,7 +30,7 @@ export class SuscriptionController {
         try {
             const { id } = req.params;            
             const { state } = req.body;
-            await this.updateSuscriptionUseCase.execute(id,state);
+            await this.updateSuscriptionUseCase.execute(Number(id),state);
             res.status(204).send();
         } catch (error) {
             res.status(400).json({ message: error });
@@ -40,7 +40,7 @@ export class SuscriptionController {
     async softDelete(req: Request, res: Response) {
         try {
             const { id } = req.params;
-            await this.softDeleteSuscriptionUseCase.execute(id);
+            await this.softDeleteSuscriptionUseCase.execute(Number(id));
             res.status(204).send();
         } catch (error) {
             res.status(400).json({ message: error });

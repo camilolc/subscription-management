@@ -1,17 +1,20 @@
+import { CreateAddon } from "../../application/use-cases/addon/create-addon.use-case";
 import { Client } from "../../domain/entities/Client";
 import { ClientRepository } from "../../interfaces/ClientRepository";
 import { SuscriptionRepository } from "../../interfaces/SuscriptionRepository";
+import { InMemoryAddonRepository } from "./InMemmoryAddon.repository";
 import { InMemorySuscriptionRepository } from "./InMemorySuscription.repository";
 
 
 
 export class InMemoryClientRepository implements ClientRepository {
 
-    constructor(private readonly suscriptionRepository:InMemorySuscriptionRepository){}
+    constructor(private readonly suscriptionRepository:InMemorySuscriptionRepository, private addonRepository:CreateAddon){}
     private clients: Client[] = [];    
     
     async create(client: Client): Promise<Client> {
         if(client.subscription) this.suscriptionRepository.create(client.subscription);
+        if(client.addons) client.addons.map(addon=> this.addonRepository.execute(addon.type,addon.assignedQuantity));
         this.clients.push(client);
         return client;
     }
@@ -22,7 +25,7 @@ export class InMemoryClientRepository implements ClientRepository {
         return client;
     }
     
-    async findById(id: string): Promise<Client | null> {
+    async findById(id: number): Promise<Client | null> {
         return this.clients.find(client => client.id === id) || null;
     }
     async findAll(): Promise<Client[] | null> {

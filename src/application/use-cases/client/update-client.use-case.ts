@@ -5,13 +5,13 @@ import { ClientRepository } from "../../../interfaces/ClientRepository";
 
 
 export interface UpdateClientUseCase{
-    execute(id: string, name: string, email:string): Promise<Client>
+    execute(id: number, name: string, email:string): Promise<Client>
 }
 
 export class UpdateClient implements UpdateClientUseCase {
     constructor(private clientRepository: ClientRepository) { }
 
-    async execute(id: string, name: string, email:string): Promise<Client> {
+    async execute(id: number, name: string, email:string): Promise<Client> {
 
         const client = await this.clientRepository.findById(id);
         if (!client) throw new Error('client not found');

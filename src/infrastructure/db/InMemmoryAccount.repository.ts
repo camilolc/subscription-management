@@ -20,7 +20,7 @@ export class InMemoryAccountRepository implements AccountRepository {
         if (index !== -1) this.accounts[index] = account;
     }
     
-    async findById(id: string): Promise<Account | null> {
+    async findById(id: number): Promise<Account | null> {
         return this.accounts.find(account => account.id === id) || null;
     }
     async findAll(): Promise<Account[] | null> {

@@ -36,8 +36,10 @@ export class Server {
         //DI
         const suscriptionRepository = new InMemorySuscriptionRepository();
         const accountRepository = new InMemoryAccountRepository(suscriptionRepository);
-        const clientRepository = new InMemoryClientRepository(suscriptionRepository);
         const addonRepository = new InMemoryAddonRepository();
+        const createAddonUseCase = new CreateAddon(addonRepository);
+
+        const clientRepository = new InMemoryClientRepository(suscriptionRepository,createAddonUseCase);
 
         //Account
         const createAccountUseCase = new CreateAccount(accountRepository);
@@ -55,7 +57,6 @@ export class Server {
         const updateClientUseCase = new UpdateClient(clientRepository);
         const softDeleteClientUseCase = new SoftDeleteClient(clientRepository);
         //Addon
-        const createAddonUseCase = new CreateAddon(addonRepository);
         const getAddonsQuantityStatusUseCase = new GetAddonsQuantityStatus(addonRepository);
         const handleQuantityUseCase = new HandleQuantity(addonRepository);
         const softDeleteAddonUseCase = new SoftDeleteAddon(addonRepository);

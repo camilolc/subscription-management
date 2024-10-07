@@ -22,8 +22,8 @@ export class AddonController {
 
     async create(req: Request, res: Response) {
         console.log(req.body);
-        const { id, type,assignedQuantity } = req.body;
-        const account = await this.createAddonUseCase.execute(id ,type,assignedQuantity);
+        const { type,assignedQuantity } = req.body;
+        const account = await this.createAddonUseCase.execute(type,assignedQuantity);
         res.status(201).json(account);
     }
 
@@ -46,7 +46,7 @@ export class AddonController {
     async softDelete(req: Request, res: Response) {
         try {
             const { id } = req.params;
-            await this.softDeleteAddonUseCase.execute(id);
+            await this.softDeleteAddonUseCase.execute(Number(id));
             res.status(204).send();
         } catch (error) {
             res.status(400).json({ message: error });

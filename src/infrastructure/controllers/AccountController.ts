@@ -10,8 +10,8 @@ export class AccountController {
 
     async create(req: Request, res: Response) {
         console.log(req.body);
-        const { name, type, id,suscription } = req.body;
-        const account = await this.createAccountUseCase.execute(id ,name, type,suscription);
+        const { name, type,suscription } = req.body;
+        const account = await this.createAccountUseCase.execute(name, type,suscription);
         res.status(201).json(account);
     }
 
@@ -26,7 +26,7 @@ export class AccountController {
         try {
             const { id } = req.params;            
             const { name, type } = req.body;
-            await this.updateAccountUseCase.execute(id, name, type);
+            await this.updateAccountUseCase.execute(Number(id), name, type);
             res.status(204).send();
         } catch (error) {
             res.status(400).json({ message: error });
@@ -36,7 +36,7 @@ export class AccountController {
     async softDelete(req: Request, res: Response) {
         try {
             const { id } = req.params;
-            await this.softDeleteAccountUseCase.execute(id);
+            await this.softDeleteAccountUseCase.execute(Number(id));
             res.status(204).send();
         } catch (error) {
             res.status(400).json({ message: error });

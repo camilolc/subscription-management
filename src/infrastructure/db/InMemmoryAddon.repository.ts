@@ -17,7 +17,7 @@ export class InMemoryAddonRepository implements AddonRepository {
         return addon;
     }
 
-    async findById(id: string): Promise<Addon | null> {
+    async findById(id: number): Promise<Addon | null> {
         return this.addons.find(addon => addon.id === id) || null;
     }
     async findAll(): Promise<Addon[] | null> {
@@ -29,7 +29,7 @@ export class InMemoryAddonRepository implements AddonRepository {
 
         return addon;
     }
-    async handleQuantity(id: string, quantity: number): Promise<void> {
+    async handleQuantity(id: number, quantity: number): Promise<void> {
 
         const addon = this.addons.find(addon => addon.id === id) || null;
         addon?.handleQuantity(quantity);        

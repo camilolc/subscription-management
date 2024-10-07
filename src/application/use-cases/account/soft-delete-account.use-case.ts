@@ -2,13 +2,13 @@ import { AccountRepository } from "../../../interfaces/AccountRepository";
 
 
 export interface SoftDeleteAccountUseCase{
-    execute(id: string): Promise<void> 
+    execute(id: number): Promise<void> 
 }
 
 export class SoftDeleteAccount implements SoftDeleteAccountUseCase {
     constructor(private accountRepository: AccountRepository) {}
 
-    async execute(id: string): Promise<void> {
+    async execute(id: number): Promise<void> {
         const account = await this.accountRepository.findById(id);
         if (!account) throw new Error('Account not found');
         account.isActive = false; 

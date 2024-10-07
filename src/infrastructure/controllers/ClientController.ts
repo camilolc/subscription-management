@@ -12,8 +12,8 @@ export class ClientController {
 
     async create(req: Request, res: Response) {
         console.log(req.body);
-        const { id, name, email,suscription } = req.body;
-        const client = await this.createClientUseCase.execute(id ,name, email,suscription);
+        const { name, email,suscription,addons } = req.body;
+        const client = await this.createClientUseCase.execute(name, email,suscription,addons);
         res.status(201).json(client);
     }
 
@@ -28,7 +28,7 @@ export class ClientController {
         try {           
             const { id } = req.params;            
             const { name, email } = req.body;
-            const client = await this.updateClientUseCase.execute(id, name, email);
+            const client = await this.updateClientUseCase.execute(Number(id), name, email);
             res.status(201).json(client);
         } catch (error) {
             res.status(400).json({ message: error });
@@ -38,7 +38,7 @@ export class ClientController {
     async softDelete(req: Request, res: Response) {
         try {
             const { id } = req.params;
-            await this.softDeleteClientUseCase.execute(id);
+            await this.softDeleteClientUseCase.execute(Number(id));
             res.status(204).send();
         } catch (error) {
             res.status(400).json({ message: error });

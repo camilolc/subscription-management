@@ -5,15 +5,15 @@ import { SuscriptionRepository } from "../../../interfaces/SuscriptionRepository
 
 
 export interface CreateSuscriptionUseCase {
-    execute( id:string,state:'active' | 'inactive' ): Promise<Subscription>
+    execute( state:'active' | 'inactive' ): Promise<Subscription>
   } 
 
 
 export class CreateSuscription implements CreateSuscriptionUseCase{
     constructor(private suscriptionRepository: SuscriptionRepository) {}
 
-  async execute(id: string, state: "active" | "inactive"): Promise<Subscription> {
-             const suscription = new Subscription(id, state);
+  async execute(state: "active" | "inactive"): Promise<Subscription> {
+             const suscription = new Subscription(state);
             return await this.suscriptionRepository.create(suscription);
   }
 

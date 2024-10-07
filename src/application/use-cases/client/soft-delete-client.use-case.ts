@@ -3,13 +3,13 @@ import { ClientRepository } from "../../../interfaces/ClientRepository";
 
 
 export interface SoftDeleteClientUseCase{
-    execute(id: string): Promise<void> 
+    execute(id: number): Promise<void> 
 }
 
 export class SoftDeleteClient implements SoftDeleteClientUseCase {
     constructor(private clientRepository: ClientRepository) { }
 
-    async execute(id: string): Promise<void> {
+    async execute(id: number): Promise<void> {
         const client = await this.clientRepository.findById(id);
         if (!client) throw new Error('client not found');
         client.isActive = false; 
