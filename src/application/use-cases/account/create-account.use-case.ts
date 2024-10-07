@@ -1,6 +1,6 @@
 import { Account } from "../../../domain/entities/Account";
 import { Subscription } from "../../../domain/entities/Suscription";
-import { AccountRepository } from "../../../adapters/repositories/AccountRepository";
+import { AccountRepository } from "../../../domain/repositories/AccountRepository";
 
 
 export interface CreateAccountUseCase {

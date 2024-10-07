@@ -1,4 +1,4 @@
-import { AccountRepository } from "../../../adapters/repositories/AccountRepository";
+import { AccountRepository } from "../../../domain/repositories/AccountRepository";
 
 
 export interface SoftDeleteAccountUseCase{

@@ -1,7 +1,5 @@
-import { Account } from "../../../domain/entities/Account";
 import { Client } from "../../../domain/entities/Client";
-import { AccountRepository } from "../../../adapters/repositories/AccountRepository";
-import { ClientRepository } from "../../../adapters/repositories/ClientRepository";
+import { ClientRepository } from "../../../domain/repositories/ClientRepository";
 
 
 export interface UpdateClientUseCase{

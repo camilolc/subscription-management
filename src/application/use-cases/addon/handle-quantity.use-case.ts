@@ -1,5 +1,4 @@
-import { Addon } from "../../../domain/entities/Addon";
-import { AddonRepository } from "../../../adapters/repositories/AddonRepository";
+import { AddonRepository } from "../../../domain/repositories/AddonRepository";
 
 
 

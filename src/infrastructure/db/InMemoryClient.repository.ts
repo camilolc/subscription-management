@@ -1,9 +1,6 @@
 import { CreateAddon } from "../../application/use-cases/addon/create-addon.use-case";
 import { Client } from "../../domain/entities/Client";
-import { ClientRepository } from "../../adapters/repositories/ClientRepository";
-import { SuscriptionRepository } from "../../adapters/repositories/SuscriptionRepository";
-import { InMemoryAddonRepository } from "./InMemmoryAddon.repository";
-import { InMemorySuscriptionRepository } from "./InMemorySuscription.repository";
+import { ClientRepository } from "../../domain/repositories/ClientRepository";
 import { CreateSuscription } from "../../application/use-cases/suscription/create-suscription.use-case";
 
 
