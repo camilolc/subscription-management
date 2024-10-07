@@ -1,16 +1,9 @@
-import { Account } from "../../domain/entities/Account";
 import { Addon } from "../../domain/entities/Addon";
-import { AccountRepository } from "../../adapters/repositories/AccountRepository";
 import { AddonRepository } from "../../adapters/repositories/AddonRepository";
-import { InMemorySuscriptionRepository } from "./InMemorySuscription.repository";
-
-
 
 export class InMemoryAddonRepository implements AddonRepository {
 
-
     private addons: Addon[] = [];
-
 
     async create(addon: Addon): Promise<Addon> {
         this.addons.push(addon);
@@ -31,8 +24,9 @@ export class InMemoryAddonRepository implements AddonRepository {
     }
     async handleQuantity(id: number, quantity: number): Promise<void> {
 
-        const addon = this.addons.find(addon => addon.id === id) || null;
-        addon?.handleQuantity(quantity);        
+        const addon = this.addons.find(addon => addon.id === id);
+        if (addon) {
+            addon.handleQuantity(quantity);
+        }
     }
-
 }

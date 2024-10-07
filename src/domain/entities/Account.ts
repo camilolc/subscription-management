@@ -1,7 +1,7 @@
 import { Client } from "./Client";
 import { Subscription } from "./Suscription";
 
-let addonIdCounter = 0;
+let accountIdCounter = 0;
 
 export class Account {
     public id: number;
@@ -12,7 +12,7 @@ export class Account {
       public isActive:boolean = true,
       public clients: Client[] = [],
     ) {
-        this.id = ++addonIdCounter;
+        this.id = ++accountIdCounter;
     }
   
   }

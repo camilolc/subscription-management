@@ -1,4 +1,3 @@
-import { AccountRepository } from "../../../adapters/repositories/AccountRepository";
 import { ClientRepository } from "../../../adapters/repositories/ClientRepository";
 
 

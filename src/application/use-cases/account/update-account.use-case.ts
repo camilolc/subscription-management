@@ -1,4 +1,3 @@
-import { Account } from "../../../domain/entities/Account";
 import { AccountRepository } from "../../../adapters/repositories/AccountRepository";
 
 

@@ -1,4 +1,4 @@
-let addIdCounter = 0;
+let addonIdCounter = 0;
 
 export class Addon {
 
@@ -9,11 +9,11 @@ export class Addon {
     public usedQuantity: number = 0,
     public isActive = true
   ) {
-    this.id = ++addIdCounter;
+    this.id = ++addonIdCounter;
    }
 
   useAddon() {
-    if (this.assignedQuantity >= this.usedQuantity + 1) {
+    if (this.assignedQuantity >= this.usedQuantity + 1 && this.isActive) {
       this.usedQuantity += 1;
     } else {
       throw new Error("Not enough addon quantity.");
@@ -26,16 +26,12 @@ export class Addon {
 
   handleQuantity(quantity: number) {
 
-    if (this.assignedQuantity + quantity > 0) {
+    if (this.assignedQuantity + quantity > 0 && this.isActive) {
       this.assignedQuantity += quantity
     } else {
       throw new Error("Not enough addon quantity.");
     }
 
-
   }
 
-  // isActive(): boolean {
-  //   return this.assignedQuantity > this.usedQuantity;
-  // }
 }
