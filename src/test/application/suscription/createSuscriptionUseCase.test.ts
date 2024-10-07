@@ -1,4 +1,4 @@
-import { SuscriptionRepository } from '../../../adapters/repositories/SuscriptionRepository';
+import { SuscriptionRepository } from '../../../domain/repositories/SuscriptionRepository';
 import { CreateSuscription } from '../../../application/use-cases/suscription/create-suscription.use-case';
 import { Subscription } from '../../../domain/entities/Suscription';
 

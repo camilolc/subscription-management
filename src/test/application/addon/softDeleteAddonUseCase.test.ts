@@ -1,4 +1,4 @@
-import { AddonRepository } from '../../../adapters/repositories/AddonRepository';
+import { AddonRepository } from '../../../domain/repositories/AddonRepository';
 import { SoftDeleteAddon } from '../../../application/use-cases/addon/soft-dalete-addon.use-case';
 import { Addon } from '../../../domain/entities/Addon';
 

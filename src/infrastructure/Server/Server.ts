@@ -23,6 +23,7 @@ import { GetAddonsQuantityStatus } from '../../application/use-cases/addon/get-a
 import { HandleQuantity } from '../../application/use-cases/addon/handle-quantity.use-case';
 import { SoftDeleteAddon } from '../../application/use-cases/addon/soft-dalete-addon.use-case';
 import { AddonController } from '../../adapters/controllers/AddonController';
+import { AddClientToAccount } from '../../application/use-cases/account/add-client-to-account.use-case';
 
 
 
@@ -35,11 +36,10 @@ export class Server {
         this.app.use(express.json());
         //DI
         const suscriptionRepository = new InMemorySuscriptionRepository();
-        const accountRepository = new InMemoryAccountRepository(suscriptionRepository);
         const addonRepository = new InMemoryAddonRepository();
         const createAddonUseCase = new CreateAddon(addonRepository);
-        const createSuscriptionUseCase = new CreateSuscription(suscriptionRepository)
-        
+        const accountRepository = new InMemoryAccountRepository(suscriptionRepository);
+        const createSuscriptionUseCase = new CreateSuscription(suscriptionRepository)        
         const clientRepository = new InMemoryClientRepository(createSuscriptionUseCase,createAddonUseCase);
 
         //Account
@@ -47,6 +47,7 @@ export class Server {
         const getAccountsUseCase = new GetAllAcounts(accountRepository);
         const updateAccountUseCase = new UpdateAccount(accountRepository);
         const softDeleteUseCase = new SoftDeleteAccount(accountRepository);
+        const addClientToAccountUseCase =  new AddClientToAccount(accountRepository,clientRepository)
         //Suscription
         const getSuscriptionUseCase = new GetAllSuscriptions(suscriptionRepository);
         const updateSuscriptionUseCase = new UpdateSuscription(suscriptionRepository);
@@ -64,12 +65,13 @@ export class Server {
 
 
         //controllles
-        const accountController = new AccountController(createAccountUseCase,getAccountsUseCase, updateAccountUseCase,softDeleteUseCase);
+        const accountController = new AccountController(createAccountUseCase,getAccountsUseCase, updateAccountUseCase,softDeleteUseCase,addClientToAccountUseCase);
         const suscriptionController = new SuscriptionController(createSuscriptionUseCase,getSuscriptionUseCase,updateSuscriptionUseCase,softDeleteSuscriptionUseCase);
         const clientController = new ClientController(createClientUseCase,getClientUseCase,updateClientUseCase,softDeleteClientUseCase);
         const addonController = new AddonController(createAddonUseCase,getAddonsQuantityStatusUseCase,handleQuantityUseCase,softDeleteAddonUseCase);
 
         this.app.post('/accounts', (req, res) => accountController.create(req, res));
+        this.app.post('/accounts/addclient', (req, res) => accountController.addClientToAccount(req, res));
         this.app.get('/accounts', (req, res) => accountController.getAll(req, res));
         this.app.put('/accounts/:id', (req, res) => accountController.update(req, res));
         this.app.delete('/accounts/:id', (req, res) => accountController.softDelete(req, res));

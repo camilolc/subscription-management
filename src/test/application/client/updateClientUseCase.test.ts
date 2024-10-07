@@ -1,4 +1,4 @@
-import { ClientRepository } from '../../../adapters/repositories/ClientRepository';
+import { ClientRepository } from '../../../domain/repositories/ClientRepository';
 import { UpdateClient } from '../../../application/use-cases/client/update-client.use-case';
 import { Client } from '../../../domain/entities/Client';
 import { Subscription } from '../../../domain/entities/Suscription';

@@ -1,4 +1,4 @@
-import { AccountRepository } from "../../../adapters/repositories/AccountRepository";
+import { AccountRepository } from "../../../domain/repositories/AccountRepository";
 import { SoftDeleteAccount } from "../../../application/use-cases/account/soft-delete-account.use-case";
 import { Account } from "../../../domain/entities/Account";
 

@@ -8,26 +8,38 @@ import { Client } from '../../domain/entities/Client';
 
 
 export class ClientController {
-    constructor(private createClientUseCase: CreateClient, private getAllClientsUseCase:GetAllClients, private updateClientUseCase:UpdateClient, private softDeleteClientUseCase:SoftDeleteClient) {}
+    constructor(private createClientUseCase: CreateClient, private getAllClientsUseCase: GetAllClients, private updateClientUseCase: UpdateClient, private softDeleteClientUseCase: SoftDeleteClient) { }
 
     async create(req: Request, res: Response) {
-        console.log(req.body);
-        const { name, email,suscription,addons } = req.body;
-        const client = await this.createClientUseCase.execute(name, email,suscription,addons);
-        res.status(201).json(client);
+        try {
+            const { name, email, suscription, addons } = req.body;
+            if (!name || !email || !suscription || !addons) throw new Error('All fields are required');
+            const client = await this.createClientUseCase.execute(name, email, suscription, addons);
+            res.status(201).json(client);
+        } catch (error) {
+            const err = error as Error
+            res.status(400).json({ message: err.message });
+        }
+
     }
 
-    async getAll(req: Request, res: Response){
-        let clients:Client[] = [];
+    async getAll(req: Request, res: Response) {
 
-        clients = await this.getAllClientsUseCase.execute() ?? [];
-        res.status(201).json(clients);
+        try {
+            let clients: Client[] = [];
+            clients = await this.getAllClientsUseCase.execute() ?? [];
+            res.status(201).json(clients);
+        } catch (error) {
+            const err = error as Error
+            res.status(400).json({ message: err.message });
+        }
     }
 
     async update(req: Request, res: Response) {
-        try {           
-            const { id } = req.params;            
+        try {
+            const { id } = req.params;
             const { name, email } = req.body;
+            if (!name || !email) throw new Error('All fields are required');
             const client = await this.updateClientUseCase.execute(Number(id), name, email);
             res.status(201).json(client);
         } catch (error) {

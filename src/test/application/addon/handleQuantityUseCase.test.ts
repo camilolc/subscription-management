@@ -1,4 +1,4 @@
-import { AddonRepository } from '../../../adapters/repositories/AddonRepository';
+import { AddonRepository } from '../../../domain/repositories/AddonRepository';
 import { HandleQuantity } from '../../../application/use-cases/addon/handle-quantity.use-case';
 
 describe('HandleQuantity', () => {

@@ -1,7 +1,7 @@
 import { Addon } from "../../../domain/entities/Addon";
 import { Client } from "../../../domain/entities/Client";
 import { Subscription } from "../../../domain/entities/Suscription";
-import { ClientRepository } from "../../../adapters/repositories/ClientRepository";
+import { ClientRepository } from "../../../domain/repositories/ClientRepository";
 
 export interface CreateClientUseCase {
   execute(name: string, email: string, suscription: Subscription, addons:Addon[]): Promise<Client>

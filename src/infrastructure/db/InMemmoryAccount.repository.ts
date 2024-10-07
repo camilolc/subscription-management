@@ -1,5 +1,5 @@
 import { Account } from "../../domain/entities/Account";
-import { AccountRepository } from "../../adapters/repositories/AccountRepository";
+import { AccountRepository } from "../../domain/repositories/AccountRepository";
 import { InMemorySuscriptionRepository } from "./InMemorySuscription.repository";
 
 

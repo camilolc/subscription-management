@@ -1,7 +1,7 @@
 import { Client } from '../../../domain/entities/Client';
 import { Subscription } from '../../../domain/entities/Suscription';
 import { Addon } from '../../../domain/entities/Addon';
-import { ClientRepository } from '../../../adapters/repositories/ClientRepository';
+import { ClientRepository } from '../../../domain/repositories/ClientRepository';
 import { CreateClient } from '../../../application/use-cases/client/create-client.use-case';
 
 describe('CreateClient', () => {
