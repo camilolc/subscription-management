@@ -7,6 +7,7 @@ export class Client {
       public name: string,
       public email: string,
       public subscription: Subscription,
+      public isActive = true,
       public addons: Addon[] = []
     ) {}
   

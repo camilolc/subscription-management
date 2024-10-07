@@ -15,8 +15,8 @@ export class SuscriptionController {
 
     async create(req: Request, res: Response) {
         console.log(req.body);
-        const { id, state, isActive } = req.body;
-        const suscription = await this.createSuscriptionUseCase.execute(id ,state, isActive);
+        const { id, state } = req.body;
+        const suscription = await this.createSuscriptionUseCase.execute(id ,state);
         res.status(201).json(suscription);
     }
 
