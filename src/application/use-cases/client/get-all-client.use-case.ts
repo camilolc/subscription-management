@@ -1,6 +1,6 @@
 import { Account } from "../../../domain/entities/Account";
 import { Client } from "../../../domain/entities/Client";
-import { ClientRepository } from "../../../interfaces/ClientRepository";
+import { ClientRepository } from "../../../adapters/repositories/ClientRepository";
 
 
 export interface GetAllClientUseCase {

@@ -1,5 +1,5 @@
 import { Addon } from "../../../domain/entities/Addon";
-import { AddonRepository } from "../../../interfaces/AddonRepository";
+import { AddonRepository } from "../../../adapters/repositories/AddonRepository";
 
 export interface GetAddonsQuantityStatusUseCase {
     execute(): Promise<Addon[] | null>

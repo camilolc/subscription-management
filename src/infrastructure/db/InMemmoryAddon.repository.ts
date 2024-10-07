@@ -1,7 +1,7 @@
 import { Account } from "../../domain/entities/Account";
 import { Addon } from "../../domain/entities/Addon";
-import { AccountRepository } from "../../interfaces/AccountRepository";
-import { AddonRepository } from "../../interfaces/AddonRepository";
+import { AccountRepository } from "../../adapters/repositories/AccountRepository";
+import { AddonRepository } from "../../adapters/repositories/AddonRepository";
 import { InMemorySuscriptionRepository } from "./InMemorySuscription.repository";
 
 

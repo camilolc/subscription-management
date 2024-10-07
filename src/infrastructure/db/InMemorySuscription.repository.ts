@@ -1,5 +1,5 @@
 import { Subscription } from "../../domain/entities/Suscription";
-import { SuscriptionRepository } from "../../interfaces/SuscriptionRepository";
+import { SuscriptionRepository } from "../../adapters/repositories/SuscriptionRepository";
 
 
 

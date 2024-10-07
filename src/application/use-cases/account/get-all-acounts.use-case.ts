@@ -1,5 +1,5 @@
 import { Account } from "../../../domain/entities/Account";
-import { AccountRepository } from "../../../interfaces/AccountRepository";
+import { AccountRepository } from "../../../adapters/repositories/AccountRepository";
 
 
 export interface GetAllAcountsUseCase {

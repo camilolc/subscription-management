@@ -1,4 +1,4 @@
-import { Subscription } from "../domain/entities/Suscription";
+import { Subscription } from "../../domain/entities/Suscription";
 
 
 export interface SuscriptionRepository {

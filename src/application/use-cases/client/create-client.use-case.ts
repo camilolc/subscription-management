@@ -2,8 +2,8 @@ import { Account } from "../../../domain/entities/Account";
 import { Addon } from "../../../domain/entities/Addon";
 import { Client } from "../../../domain/entities/Client";
 import { Subscription } from "../../../domain/entities/Suscription";
-import { AccountRepository } from "../../../interfaces/AccountRepository";
-import { ClientRepository } from "../../../interfaces/ClientRepository";
+import { AccountRepository } from "../../../adapters/repositories/AccountRepository";
+import { ClientRepository } from "../../../adapters/repositories/ClientRepository";
 
 
 

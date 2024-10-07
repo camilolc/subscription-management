@@ -1,5 +1,5 @@
-import { AccountRepository } from "../../../interfaces/AccountRepository";
-import { ClientRepository } from "../../../interfaces/ClientRepository";
+import { AccountRepository } from "../../../adapters/repositories/AccountRepository";
+import { ClientRepository } from "../../../adapters/repositories/ClientRepository";
 
 
 export interface SoftDeleteClientUseCase{

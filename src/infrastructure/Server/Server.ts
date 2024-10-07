@@ -1,12 +1,12 @@
 import express from 'express'
 import { CreateAccount } from '../../application/use-cases/account/create-account.use-case';
 import { GetAllAcounts } from '../../application/use-cases/account/get-all-acounts.use-case';
-import { AccountController } from '../controllers/AccountController';
+import { AccountController } from '../../adapters/controllers/AccountController';
 import { InMemoryAccountRepository } from '../db/InMemmoryAccount.repository';
 import { InMemorySuscriptionRepository } from '../db/InMemorySuscription.repository';
 import { UpdateAccount } from '../../application/use-cases/account/update-account.use-case';
 import { SoftDeleteAccount } from '../../application/use-cases/account/soft-delete-account.use-case';
-import { SuscriptionController } from '../controllers/SuscriptionController';
+import { SuscriptionController } from '../../adapters/controllers/SuscriptionController';
 import { CreateSuscription } from '../../application/use-cases/suscription/create-suscription.use-case';
 import { GetAllSuscriptions } from '../../application/use-cases/suscription/get-all-suscriptions.use-case';
 import { UpdateSuscription } from '../../application/use-cases/suscription/update-suscription.use-case';
@@ -16,13 +16,13 @@ import { CreateClient } from '../../application/use-cases/client/create-client.u
 import { GetAllClients } from '../../application/use-cases/client/get-all-client.use-case';
 import { UpdateClient } from '../../application/use-cases/client/update-client.use-case';
 import { SoftDeleteClient } from '../../application/use-cases/client/soft-delete-client.use-case';
-import { ClientController } from '../controllers/ClientController';
+import { ClientController } from '../../adapters/controllers/ClientController';
 import { InMemoryAddonRepository } from '../db/InMemmoryAddon.repository';
 import { CreateAddon } from '../../application/use-cases/addon/create-addon.use-case';
 import { GetAddonsQuantityStatus } from '../../application/use-cases/addon/get-addons-quantity-status.use-case';
 import { HandleQuantity } from '../../application/use-cases/addon/handle-quantity.use-case';
 import { SoftDeleteAddon } from '../../application/use-cases/addon/soft-dalete-addon.use-case';
-import { AddonController } from '../controllers/AddonController';
+import { AddonController } from '../../adapters/controllers/AddonController';
 
 
 
@@ -38,8 +38,9 @@ export class Server {
         const accountRepository = new InMemoryAccountRepository(suscriptionRepository);
         const addonRepository = new InMemoryAddonRepository();
         const createAddonUseCase = new CreateAddon(addonRepository);
-
-        const clientRepository = new InMemoryClientRepository(suscriptionRepository,createAddonUseCase);
+        const createSuscriptionUseCase = new CreateSuscription(suscriptionRepository)
+        
+        const clientRepository = new InMemoryClientRepository(createSuscriptionUseCase,createAddonUseCase);
 
         //Account
         const createAccountUseCase = new CreateAccount(accountRepository);
@@ -47,7 +48,6 @@ export class Server {
         const updateAccountUseCase = new UpdateAccount(accountRepository);
         const softDeleteUseCase = new SoftDeleteAccount(accountRepository);
         //Suscription
-        const createSuscriptionUseCase = new CreateSuscription(suscriptionRepository)
         const getSuscriptionUseCase = new GetAllSuscriptions(suscriptionRepository);
         const updateSuscriptionUseCase = new UpdateSuscription(suscriptionRepository);
         const softDeleteSuscriptionUseCase = new SoftDeleteSuscription(suscriptionRepository);

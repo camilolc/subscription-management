@@ -1,4 +1,4 @@
-import { AddonRepository } from "../../../interfaces/AddonRepository";
+import { AddonRepository } from "../../../adapters/repositories/AddonRepository";
 
 
 

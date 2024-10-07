@@ -1,4 +1,4 @@
-import { Addon } from "../domain/entities/Addon";
+import { Addon } from "../../domain/entities/Addon";
 
 export interface AddonRepository {
     create(addon: Addon): Promise<Addon>;

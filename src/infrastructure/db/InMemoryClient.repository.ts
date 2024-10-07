@@ -1,19 +1,20 @@
 import { CreateAddon } from "../../application/use-cases/addon/create-addon.use-case";
 import { Client } from "../../domain/entities/Client";
-import { ClientRepository } from "../../interfaces/ClientRepository";
-import { SuscriptionRepository } from "../../interfaces/SuscriptionRepository";
+import { ClientRepository } from "../../adapters/repositories/ClientRepository";
+import { SuscriptionRepository } from "../../adapters/repositories/SuscriptionRepository";
 import { InMemoryAddonRepository } from "./InMemmoryAddon.repository";
 import { InMemorySuscriptionRepository } from "./InMemorySuscription.repository";
+import { CreateSuscription } from "../../application/use-cases/suscription/create-suscription.use-case";
 
 
 
 export class InMemoryClientRepository implements ClientRepository {
 
-    constructor(private readonly suscriptionRepository:InMemorySuscriptionRepository, private addonRepository:CreateAddon){}
+    constructor(private readonly suscriptionRepository:CreateSuscription, private addonRepository:CreateAddon){}
     private clients: Client[] = [];    
     
     async create(client: Client): Promise<Client> {
-        if(client.subscription) this.suscriptionRepository.create(client.subscription);
+        if(client.subscription) this.suscriptionRepository.execute(client.subscription.state);
         if(client.addons) client.addons.map(addon=> this.addonRepository.execute(addon.type,addon.assignedQuantity));
         this.clients.push(client);
         return client;

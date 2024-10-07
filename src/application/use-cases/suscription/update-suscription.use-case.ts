@@ -1,6 +1,6 @@
 import { Account } from "../../../domain/entities/Account";
-import { AccountRepository } from "../../../interfaces/AccountRepository";
-import { SuscriptionRepository } from "../../../interfaces/SuscriptionRepository";
+import { AccountRepository } from "../../../adapters/repositories/AccountRepository";
+import { SuscriptionRepository } from "../../../adapters/repositories/SuscriptionRepository";
 
 
 export interface UpdateSuscriptionUseCase{
