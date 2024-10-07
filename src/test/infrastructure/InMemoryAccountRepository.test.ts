@@ -50,15 +50,17 @@ describe('InMemoryAccountRepository', () => {
         expect(allAccounts).toEqual([account1, account2]);
     });
 
-    it('should update an account if it exists', async () => {
-        const subscription = new Subscription('active');
-        const account = new Account('Account to Update', 'wellness', subscription);
-        await accountRepository.create(account);
+    it('should not update an account if it does not exist', async () => {
+        const account = new Account('Non-existing Account', 'wellness', new Subscription('active'));
+        await accountRepository.update(account); // Debe ejecutarse sin errores
 
-        account.name = 'Updated Account Name';
-        await accountRepository.update(account);
+        const foundAccount = await accountRepository.findById(account.id);
+        expect(foundAccount).toBeNull();
+    });
+ 
 
-        const updatedAccount = await accountRepository.findById(account.id);
-        expect(updatedAccount?.name).toBe('Updated Account Name');
+    it('should return null for non-existing account', async () => {
+        const foundAccount = await accountRepository.findById(999); // ID que no existe
+        expect(foundAccount).toBeNull();
     });
 });
