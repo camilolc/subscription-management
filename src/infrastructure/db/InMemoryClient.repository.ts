@@ -11,6 +11,7 @@ export class InMemoryClientRepository implements ClientRepository {
     private clients: Client[] = [];    
     
     async create(client: Client): Promise<Client> {
+
         if(client.subscription) this.suscriptionRepository.execute(client.subscription.state);
         if(client.addons) client.addons.map(addon=> this.addonRepository.execute(addon.type,addon.assignedQuantity));
         this.clients.push(client);

@@ -40,10 +40,10 @@ export class Server {
         this.app.use(express.json());
         //DI
         const suscriptionRepository = new InMemorySuscriptionRepository();
-        const addonRepository = new InMemoryAddonRepository();
-        const createAddonUseCase = new CreateAddon(addonRepository);
         const accountRepository = new InMemoryAccountRepository(suscriptionRepository);
         const createSuscriptionUseCase = new CreateSuscription(suscriptionRepository)        
+        const addonRepository = new InMemoryAddonRepository();
+        const createAddonUseCase = new CreateAddon(addonRepository);
         const clientRepository = new InMemoryClientRepository(createSuscriptionUseCase,createAddonUseCase);
 
         //Account
@@ -57,7 +57,7 @@ export class Server {
         const updateSuscriptionUseCase = new UpdateSuscription(suscriptionRepository);
         const softDeleteSuscriptionUseCase = new SoftDeleteSuscription(suscriptionRepository);
         //Client
-        const createClientUseCase = new CreateClient(clientRepository)
+        const createClientUseCase = new CreateClient(clientRepository,createAddonUseCase)
         const getClientUseCase = new GetAllClients(clientRepository);
         const updateClientUseCase = new UpdateClient(clientRepository);
         const softDeleteClientUseCase = new SoftDeleteClient(clientRepository);
@@ -79,7 +79,6 @@ export class Server {
 
 
         this.app.listen(3000,()=>{
-
             console.log(`Server running on port ${3000}`)
         })
     }
