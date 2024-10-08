@@ -1,0 +1,408 @@
+{
+	"info": {
+		"_postman_id": "53719ebb-bd14-4c3f-9f29-a8c0165c414f",
+		"name": "Suscription Manager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18250036"
+	},
+	"item": [
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "Get accounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_host}}/accounts",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create account",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n  \"name\": \"first account\",\r\n  \"type\": \"health\",  \r\n  \"suscription\":{\r\n    \"id\":\"2\",\r\n    \"state\":\"active\",\r\n    \"isActive\":true\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_host}}/accounts",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update account",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"eeee\",\r\n  \"type\": \"wellness\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_host}}/accounts/1",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"accounts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete account",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{local_host}}/accounts/1",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"accounts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add client to account",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountId\":1,\r\n    \"clientId\":1\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_host}}/accounts/addclient",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"accounts",
+								"addclient"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Suscription",
+			"item": [
+				{
+					"name": "Get suscriptions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_host}}/suscriptions",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"suscriptions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create suscription",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \r\n    \"state\":\"active\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_host}}/suscriptions",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"suscriptions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update suscription",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"state\":\"inactive\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_host}}/suscriptions/4",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"suscriptions",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete suscription",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{local_host}}/suscriptions/4",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"suscriptions",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "Get clients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_host}}/clients",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \r\n    \"name\":\"camiloaa\",\r\n    \"email\":\"camilo@gmailaa.com\",\r\n    \"suscription\":{\r\n       \r\n        \"state\":\"active\"        \r\n    },\r\n    \"addons\":[\r\n        {\r\n           \r\n            \"type\":\"email\",\r\n            \"assignedQuantity\":100\r\n        },\r\n        {\r\n            \r\n            \"type\":\"sms\",\r\n            \"assignedQuantity\":50\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_host}}/clients",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update client",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"camilo arturo\",\r\n    \"email\":\"camilo@mail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_host}}/clients/1",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"clients",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete client",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{local_host}}/clients/2",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"clients",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Addon",
+			"item": [
+				{
+					"name": "Get addons",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_host}}/addons",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"addons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create addon",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \r\n    \"type\":\"email\",\r\n    \"assignedQuantity\":4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_host}}/addons",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"addons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Handle quantity addon",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":1,\r\n    \"quantity\": 40\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_host}}/addons",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"addons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete addon",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{local_host}}/addons/1",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"addons",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

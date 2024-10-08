@@ -14,7 +14,7 @@ export class InMemoryAddonRepository implements AddonRepository {
         return this.addons.find(addon => addon.id === id) || null;
     }
     async findAll(): Promise<Addon[] | null> {
-        return this.addons;
+        return this.addons.filter(addon=> addon.isActive);
     }
     async update(addon: Addon): Promise<Addon> {
         const index = this.addons.findIndex(a => a.id === addon.id);
